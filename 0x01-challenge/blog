@@ -1,0 +1,63 @@
+#!/usr/bin/python3
+class Post:
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+        self.online = True
+
+    def edit(self, title, content):
+        self.title = title
+        self.content = content
+
+    def toggle_online(self):
+        self.online = not self.online
+
+
+class Blog:
+    def __init__(self):
+        self.posts = []
+
+    def add_post(self, post):
+        self.posts.append(post)
+
+    def edit_post(self, post_index, title, content):
+        self.posts[post_index].edit(title, content)
+
+    def toggle_post_online(self, post_index):
+        self.posts[post_index].toggle_online()
+
+    def display_posts(self):
+        for i, post in enumerate(self.posts):
+            print(f"Post {i+1}:")
+            print(f"Title: {post.title}")
+            print(f"Content: {post.content}")
+            print(f"Online: {'Yes' if post.online else 'No'}")
+            print()
+
+
+if __name__ == "__main__":
+    blog = Blog()
+
+    # Create some sample posts
+    post1 = Post("First Post", "This is the content of the first post.")
+    post2 = Post("Second Post", "This is the content of the second post.")
+    post3 = Post("Third Post", "This is the content of the third post.")
+
+    # Add posts to the blog
+    blog.add_post(post1)
+    blog.add_post(post2)
+    blog.add_post(post3)
+
+    # Display all posts
+    print("Initial list of posts:")
+    blog.display_posts()
+
+    # Edit a post
+    blog.edit_post(1, "Updated Second Post", "This is the updated content of the second post.")
+
+    # Toggle online status of a post
+    blog.toggle_post_online(2)
+
+    # Display updated list of posts
+    print("Updated list of posts:")
+    blog.display_posts()
